@@ -351,3 +351,18 @@ reviewsVideos.forEach((video) => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const questionareInfo = document.querySelector('.questionare-info');
+  const questionareInfoHeader = questionareInfo.querySelector('.questionare-answer-header');
+  const questionareInfoContent = questionareInfo.querySelector('.questionare-answer-content');
+
+  slideUp(questionareInfoContent);
+  questionareInfo.classList.add('opened');
+
+  info.c6
+
+  questionareInfoHeader.addEventListener('click', () => {
+    slideDown(questionareInfoContent)
+  })
+});
