@@ -79,23 +79,23 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  const s4 = new Swiper('.reviews-swiper', {
+  const s4 = new Swiper(".reviews-swiper", {
     // Optional parameters
     slidesPerView: 1.3,
     spaceBetween: 65,
     mousewheel: true,
     breakpoints: {
       1024: {
-        mousewheel: false
+        mousewheel: false,
       },
       1920: {
-        mousewheel: false
-      }
+        mousewheel: false,
+      },
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    }
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
   });
 
   const s3 = new Swiper(".numbered-swiper", {
@@ -335,10 +335,10 @@ initFAQ();
 //
 // setInterval(changeActiveItem, 2000);
 
-const reviewsVideos = document.querySelectorAll('.reviews-swiper video');
+const reviewsVideos = document.querySelectorAll(".reviews-swiper video");
 
 reviewsVideos.forEach((video) => {
-  video.addEventListener('click', () => {
+  video.addEventListener("click", () => {
     if (video.paused) {
       reviewsVideos.forEach((video) => {
         video.pause();
@@ -352,17 +352,24 @@ reviewsVideos.forEach((video) => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const questionareInfo = document.querySelector('.questionare-info');
-  const questionareInfoHeader = questionareInfo.querySelector('.questionare-answer-header');
-  const questionareInfoContent = questionareInfo.querySelector('.questionare-answer-content');
+document.addEventListener("DOMContentLoaded", () => {
+  const questionareInfo = document.querySelector(".questionare-info");
+  const questionareInfoHeader = questionareInfo.querySelector(
+    ".questionare-answer-header"
+  );
+  const questionareInfoContent = questionareInfo.querySelector(
+    ".questionare-answer-content"
+  );
 
   slideUp(questionareInfoContent);
-  questionareInfo.classList.add('opened');
 
-  info.c6
-
-  questionareInfoHeader.addEventListener('click', () => {
-    slideDown(questionareInfoContent)
-  })
+  questionareInfoHeader.addEventListener("click", () => {
+    if (questionareInfoHeader.classList.contains("opened")) {
+      questionareInfoHeader.classList.remove("opened");
+      slideDown(questionareInfoContent);
+    } else {
+      questionareInfoHeader.classList.add("opened");
+      slideUp(questionareInfoContent);
+    }
+  });
 });
