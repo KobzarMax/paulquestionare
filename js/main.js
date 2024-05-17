@@ -373,3 +373,60 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+let currentStep = '1';
+const totalSteps = '7';
+
+const nextStepButton = document.querySelector('#next-step');
+const prevStepButton = document.querySelector('#prev-step');
+
+function nextStep() {
+  if (currentStep < totalSteps) {
+    // Hide current step
+    const currentStepElement = document.querySelector(`[data-step="${currentStep}"]`);
+    currentStepElement.classList.add('hidden');
+
+    // Show next step
+    currentStep++;
+    const nextStepElement = document.querySelector(`[data-step="${currentStep}"]`);
+    nextStepElement.classList.remove('hidden');
+    prevStepButton.classList.remove('hidden');
+
+    // Update progress bar
+    const progressStepElement = document.querySelector(`[data-step-index="${currentStep - 1}"]`);
+    progressStepElement.classList.remove('bg-dark_green/10');
+    progressStepElement.classList.add('bg-green');
+
+    // Update progress bar attribute
+    document.querySelector('.steps-progress').setAttribute('data-filled-steps', currentStep - 1);
+  }
+
+  if (currentStep === totalSteps) {
+    document.querySelector('.questionare-steps').classList.add('hidden');
+    document.getElementById('questionare-final').classList.remove('hidden');
+  }
+}
+
+function prevStep() {
+  if (currentStep > 1) {
+    // Hide current step
+    const currentStepElement = document.querySelector(`[data-step="${currentStep}"]`);
+    currentStepElement.classList.add('hidden');
+
+    // Show previous step
+    currentStep--;
+    const prevStepElement = document.querySelector(`[data-step="${currentStep}"]`);
+    prevStepElement.classList.remove('hidden');
+
+    // Update progress bar
+    const progressStepElement = document.querySelector(`[data-step-index="${currentStep}"]`);
+    progressStepElement.classList.add('bg-dark_green/10');
+    progressStepElement.classList.remove('bg-green');
+
+    // Update progress bar attribute
+    document.querySelector('.steps-progress').setAttribute('data-filled-steps', currentStep - 1);
+  }
+}
+
+nextStepButton.addEventListener('click', () => nextStep());
+prevStepButton.addEventListener('click', () => prevStep());
