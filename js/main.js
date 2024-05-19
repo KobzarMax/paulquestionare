@@ -430,3 +430,32 @@ function prevStep() {
 
 nextStepButton.addEventListener('click', () => nextStep());
 prevStepButton.addEventListener('click', () => prevStep());
+
+document.addEventListener("DOMContentLoaded", function() {
+  const customSelectWrapper = document.querySelector(".custom-select-wrapper");
+  const customSelect = document.querySelector(".custom-select");
+  const customSelectTrigger = document.querySelector(".custom-select-trigger");
+  const customOptions = document.querySelector(".custom-options");
+  const customOptionsItems = document.querySelectorAll(".custom-option");
+  const selectElement = document.querySelector("#form_select");
+
+  customSelectTrigger.addEventListener("click", function() {
+    customOptions.classList.toggle("open");
+  });
+
+  customOptionsItems.forEach(option => {
+    option.addEventListener("click", function() {
+      customOptionsItems.forEach(item => item.classList.remove("selected"));
+      this.classList.add("selected");
+      customSelectTrigger.querySelector("span").textContent = this.textContent;
+      selectElement.value = this.getAttribute("data-value");
+      customOptions.classList.remove("open");
+    });
+  });
+
+  document.addEventListener("click", function(event) {
+    if (!customSelect.contains(event.target)) {
+      customOptions.classList.remove("open");
+    }
+  });
+});
