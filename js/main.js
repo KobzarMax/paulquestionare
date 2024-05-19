@@ -1,15 +1,15 @@
-function burgerMenu() {
-  const burger = document.querySelector(".burger");
-  const menu = burger.parentNode;
-
-  burger.addEventListener("click", () => {
-    burger.classList.toggle("active");
-    menu.classList.toggle("active");
-    document.body.classList.toggle("_lock");
-  });
-}
-
-burgerMenu();
+// function burgerMenu() {
+//   const burger = document.querySelector(".burger");
+//   const menu = burger.parentNode;
+//
+//   burger.addEventListener("click", () => {
+//     burger.classList.toggle("active");
+//     menu.classList.toggle("active");
+//     document.body.classList.toggle("_lock");
+//   });
+// }
+//
+// burgerMenu();
 
 const header = document.querySelector("#header");
 
@@ -379,12 +379,19 @@ const totalSteps = '7';
 
 const nextStepButton = document.querySelector('#next-step');
 const prevStepButton = document.querySelector('#prev-step');
+const skipStepButton = document.querySelector('#skip-step');
 
 function nextStep() {
+  if (currentStep.toString() === totalSteps.toString()) {
+    document.querySelector('.questionare-steps').classList.add('hidden');
+    document.getElementById('questionare-final').classList.remove('hidden');
+    document.querySelector('.steps-progress').classList.add('hidden');
+  }
   if (currentStep < totalSteps) {
     // Hide current step
     const currentStepElement = document.querySelector(`[data-step="${currentStep}"]`);
     currentStepElement.classList.add('hidden');
+    document.querySelector('.steps-progress').classList.remove('hidden');
 
     // Show next step
     currentStep++;
@@ -399,11 +406,6 @@ function nextStep() {
 
     // Update progress bar attribute
     document.querySelector('.steps-progress').setAttribute('data-filled-steps', currentStep - 1);
-  }
-
-  if (currentStep === totalSteps) {
-    document.querySelector('.questionare-steps').classList.add('hidden');
-    document.getElementById('questionare-final').classList.remove('hidden');
   }
 }
 
@@ -429,6 +431,7 @@ function prevStep() {
 }
 
 nextStepButton.addEventListener('click', () => nextStep());
+skipStepButton.addEventListener('click', () => nextStep());
 prevStepButton.addEventListener('click', () => prevStep());
 
 document.addEventListener("DOMContentLoaded", function() {

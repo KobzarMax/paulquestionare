@@ -671,6 +671,14 @@ video {
   margin-top: 1.5rem;
 }
 
+.-mr-10 {
+  margin-right: -2.5rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -2028,6 +2036,10 @@ html {
 
   .medium\:right-0 {
     right: 0px;
+  }
+
+  .medium\:mr-0 {
+    margin-right: 0px;
   }
 
   .medium\:hidden {
